@@ -1,0 +1,29 @@
+{
+  "name": "eclatech-material-ui",
+  "version": "1.0.0",
+  "description": "Eclatech React UI Lib",
+  "scripts": {
+    "rollup": "rollup -c"
+  },
+  "author": "Bharanidharan Murugaiyan",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.4",
+    "@rollup/plugin-node-resolve": "^15.2.1",
+    "@rollup/plugin-typescript": "^11.1.2",
+    "@types/react": "^18.2.21",
+    "react": "^18.2.0",
+    "rollup": "^3.28.1",
+    "rollup-plugin-dts": "^6.0.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
+  },
+  "type": "module",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts"
+}
