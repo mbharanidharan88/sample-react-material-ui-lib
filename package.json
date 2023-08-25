@@ -1,6 +1,6 @@
 {
   "name": "eclatech-material-ui",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Eclatech React UI Lib",
   "scripts": {
     "rollup": "rollup -c"
@@ -12,18 +12,30 @@
     "@rollup/plugin-node-resolve": "^15.2.1",
     "@rollup/plugin-typescript": "^11.1.2",
     "@types/react": "^18.2.21",
-    "react": "^18.2.0",
+    "babel-plugin-styled-components": "^2.1.4",
     "rollup": "^3.28.1",
     "rollup-plugin-dts": "^6.0.0",
     "rollup-plugin-postcss": "^4.0.2",
     "tslib": "^2.6.2",
     "typescript": "^5.2.2"
   },
-  "type": "module",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "peerDependencies": {
+    "@fontsource/roboto": "^5.0.8",
+    "@mui/base": "^5.0.0-beta.12",
+    "@mui/material": "^5.14.6",
+    "@mui/styled-engine-sc": "^5.14.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.11"
+  },
+  "dependencies": {
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-sourcemaps": "^0.6.3"
+  }
 }

@@ -1,11 +1,14 @@
 import React from "react";
+import MaterialButton from "@mui/material/Button";
 
-interface ButtonProps {
+export interface ButtonProps {
   label: string;
+  size: "small" | "medium" | "large" | string;
+  variant: "contained" | "outlined" | "text" | string;
 }
 
-const Button = (props: ButtonProps) => {
-  return <button>{props.label}</button>;
+const InputButton = (props: ButtonProps) => {
+  return <MaterialButton variant="outlined">{props.label}</MaterialButton>;
 };
 
-export default Button;
+export default InputButton;
