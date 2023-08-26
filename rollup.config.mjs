@@ -7,6 +7,7 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 
 import packageJson from "./package.json" assert { type: "json" };
 import sourcemaps from "rollup-plugin-sourcemaps";
+import image from "@rollup/plugin-image";
 
 export default [
   {
@@ -36,6 +37,7 @@ export default [
       "@mui/styles",
     ],
     plugins: [
+      image(),
       peerDepsExternal(),
       resolve(),
       commonjs(),
@@ -47,7 +49,7 @@ export default [
   {
     input: "dist/esm/types/index.d.ts",
     output: [{ file: "dist/index.d.ts", format: "esm" }],
-    plugins: [peerDepsExternal(), dts()],
+    plugins: [image(), peerDepsExternal(), dts()],
     external: [
       "react",
       "react-dom",

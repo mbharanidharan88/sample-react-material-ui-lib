@@ -1,11 +1,20 @@
 import React from "react";
 import { Box, Divider, IconButton, useTheme } from "@mui/material";
 import Icon from "@mui/material/Icon";
-import logo from "../../../assets/solutions.png";
+import logo from "../../../../assets/solutions.png";
+import { styled } from "@mui/material/styles";
+import NavMenu from "../menu/NavMenu";
+
+const StyledImg = styled("img")({
+  height: "50px",
+  width: "calc(100% - 60px)",
+  flexGrow: 1,
+});
 
 export interface SideNavProps {
   isCompactNav: boolean;
   onToggleNavSize: any;
+  navItems: React.ReactNode;
 }
 
 const SideNav = (props: SideNavProps) => {
@@ -16,14 +25,21 @@ const SideNav = (props: SideNavProps) => {
   const styles = {
     sideNavRoot: {
       width: sideNavWidth,
-      background: "green",
+      background: theme.palette.warning.dark,
       height: "100%;",
       display: "flex",
       justifyContent: sideNavContentPosition,
       transition: "width 1s",
+      padding: "5px",
+    },
+    sideNavTitle: {
+      height: "60px",
     },
     menuIcon: {
       color: theme.palette.common.white,
+    },
+    doubleArrowLeftButton: {
+      wdith: "60px",
     },
     doubleArrowLeftIcon: {
       color: theme.palette.common.white,
@@ -32,14 +48,14 @@ const SideNav = (props: SideNavProps) => {
 
   return (
     <Box id="sideNav" sx={styles.sideNavRoot}>
-      <Box id="sideNavTitle">
+      <Box id="sideNavTitle" sx={styles.sideNavTitle}>
         {props.isCompactNav ? (
           <IconButton onClick={props.onToggleNavSize}>
             <Icon sx={styles.menuIcon}>menu</Icon>
           </IconButton>
         ) : (
           <Box sx={{ display: "flex" }}>
-            <img src={logo} />
+            <StyledImg src={logo} />
             <Divider orientation="vertical" flexItem />
             <IconButton onClick={props.onToggleNavSize}>
               <Icon sx={styles.doubleArrowLeftIcon}>
@@ -49,6 +65,7 @@ const SideNav = (props: SideNavProps) => {
           </Box>
         )}
       </Box>
+      <Box>{props.navItems}</Box>
     </Box>
   );
 };
