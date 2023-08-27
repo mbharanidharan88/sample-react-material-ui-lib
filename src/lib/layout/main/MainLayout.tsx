@@ -1,15 +1,26 @@
-import { Box, Container, makeStyles } from "@mui/material";
+import {
+  Box,
+  Container,
+  Divider,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  makeStyles,
+} from "@mui/material";
 import React, { useState } from "react";
 import { Header } from "../header";
 import { SideNav } from "../nav";
 import CssBaseline from "@mui/material/CssBaseline";
+import { Outlet, Link } from "react-router-dom";
+import { INavMenuItem } from "../nav/menu/NavMenu";
 
-export interface MainLayoutProps {
+export interface IMainLayoutProps {
   headerChildren?: React.ReactNode;
-  children: React.ReactNode;
+  navItems: INavMenuItem[];
 }
 
-const MainLayout = (props: MainLayoutProps) => {
+const MainLayout: React.FC<IMainLayoutProps> = (props: IMainLayoutProps) => {
   const [navCompact, setNavCompact] = useState(false);
 
   const toggleNavSize = () => {
@@ -48,11 +59,12 @@ const MainLayout = (props: MainLayoutProps) => {
         <SideNav
           onToggleNavSize={toggleNavSize}
           isCompactNav={navCompact}
+          navItems={props.navItems}
         ></SideNav>
         <Box id="content" sx={styles.contentBox}>
           <Header isCompactNav={navCompact}>{props.headerChildren}</Header>
           <Box id="contentChildren" sx={styles.contentBoxChildren}>
-            {props.children}
+            <Outlet />
           </Box>
         </Box>
       </Container>

@@ -1,4 +1,6 @@
+import React from "react";
 import {
+  Box,
   Divider,
   Drawer,
   List,
@@ -7,58 +9,86 @@ import {
   ListItemIcon,
   ListItemText,
   Toolbar,
+  useTheme,
 } from "@mui/material";
 import Icon from "@mui/material/Icon";
-import React from "react";
+import { Link } from "react-router-dom";
 
-export interface NavMenuProps {
-  showHome?: boolean;
+export interface INavMenuProps {
+  isCompactNav: boolean;
+  navItems: INavMenuItem[];
+}
+
+export interface INavMenuItem {
+  text: string;
+  linkTo: string;
+  icon: string;
+  parent?: string;
 }
 
 const drawerWidth = 240;
 
-const NavMenu = (props: NavMenuProps) => {
+const NavMenu: React.FC<INavMenuProps> = (props: INavMenuProps) => {
+  const theme = useTheme();
+  const styles = {
+    listItemText: {
+      color: theme.palette.common.white,
+      fontSize: theme.typography.subtitle1,
+    },
+  };
+
+  const drawer: JSX.Element = (
+    <div>
+      <Divider />
+      <List>
+        {props.navItems.map((navItem, index) => (
+          <ListItem
+            key={navItem.text}
+            component={Link}
+            to={"/" + navItem.linkTo}
+          >
+            <ListItemIcon>
+              <Icon>{navItem.icon}</Icon>
+            </ListItemIcon>
+            {props.isCompactNav ? null : (
+              <ListItemText sx={styles.listItemText} primary={navItem.text} />
+            )}
+          </ListItem>
+        ))}
+      </List>
+    </div>
+  );
+
   return (
-    <Drawer
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        "& .MuiDrawer-paper": {
-          width: drawerWidth,
-          boxSizing: "border-box",
-        },
-      }}
-      variant="permanent"
-      anchor="left"
-    >
-      <Toolbar />
-      <Divider />
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <Icon>mail</Icon> : <Icon>all_inbox</Icon>}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <Icon>mail</Icon> : <Icon>all_inbox</Icon>}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Drawer>
+    <Box id="navMenu" width={drawerWidth}>
+      {drawer}
+    </Box>
+    // <Drawer
+    //   id="drawer"
+    //   sx={{
+    //     width: drawerWidth,
+    //     background: "red",
+    //   }}
+    //   variant="persistent"
+    //   anchor="left"
+    // >
+    //   <Toolbar />
+    //   <Divider />
+    //   {/* <List>
+    //     {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+    //       <ListItem key={text} disablePadding>
+    //         <ListItemButton>
+    //           <ListItemIcon>
+    //             {index % 2 === 0 ? <Icon>mail</Icon> : <Icon>all_inbox</Icon>}
+    //           </ListItemIcon>
+    //           <ListItemText primary={text} />
+    //         </ListItemButton>
+    //       </ListItem>
+    //     ))}
+    //   </List>
+    //   <Divider /> */}
+    //   {drawer}
+    // </Drawer>
   );
 };
 

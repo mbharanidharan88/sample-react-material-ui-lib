@@ -1,1 +1,1 @@
-export { default as MainLayout, MainLayoutProps } from "./MainLayout";
+export { default as MainLayout, IMainLayoutProps } from "./MainLayout";

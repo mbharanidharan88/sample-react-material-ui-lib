@@ -1,4 +1,5 @@
 export { Button, ButtonProps } from "./Button";
-export { MainLayout, MainLayoutProps } from "./layout";
+export { MainLayout, IMainLayoutProps } from "./layout";
 export { Header, HeaderProps } from "./layout";
-export { SideNav, SideNavProps } from "./layout";
+export { SideNav, ISideNavProps } from "./layout";
+export { NavMenu, INavMenuProps, INavMenuItem } from "./layout";

@@ -3,7 +3,7 @@ import { Box, Divider, IconButton, useTheme } from "@mui/material";
 import Icon from "@mui/material/Icon";
 import logo from "../../../../assets/solutions.png";
 import { styled } from "@mui/material/styles";
-import NavMenu from "../menu/NavMenu";
+import NavMenu, { INavMenuItem } from "../menu/NavMenu";
 
 const StyledImg = styled("img")({
   height: "50px",
@@ -11,15 +11,15 @@ const StyledImg = styled("img")({
   flexGrow: 1,
 });
 
-export interface SideNavProps {
+export interface ISideNavProps {
   isCompactNav: boolean;
   onToggleNavSize: any;
-  navItems: React.ReactNode;
+  navItems: INavMenuItem[];
 }
 
-const SideNav = (props: SideNavProps) => {
+const SideNav: React.FC<ISideNavProps> = (props: ISideNavProps) => {
   const sideNavWidth = props.isCompactNav ? "76px" : "256px";
-  const sideNavContentPosition = props.isCompactNav ? "center" : "right";
+  const sideNavContentPosition = props.isCompactNav ? "start" : "center";
   const theme = useTheme();
 
   const styles = {
@@ -28,12 +28,14 @@ const SideNav = (props: SideNavProps) => {
       background: theme.palette.warning.dark,
       height: "100%;",
       display: "flex",
-      justifyContent: sideNavContentPosition,
+      flexDirection: "column",
+      justifyContent: "start",
       transition: "width 1s",
       padding: "5px",
     },
     sideNavTitle: {
       height: "60px",
+      display: "flex",
     },
     menuIcon: {
       color: theme.palette.common.white,
@@ -65,7 +67,8 @@ const SideNav = (props: SideNavProps) => {
           </Box>
         )}
       </Box>
-      <Box>{props.navItems}</Box>
+
+      <NavMenu navItems={props.navItems} isCompactNav={props.isCompactNav} />
     </Box>
   );
 };
