@@ -1,11 +1,11 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Box, Divider, useTheme } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import logo from "../../../assets/solutions.png";
 
 export interface HeaderProps {
   isCompactNav: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 const StyledImg = styled("img")({
@@ -21,11 +21,16 @@ const Header = (props: HeaderProps) => {
       width: "100%",
       height: "76px",
       background: theme.palette.background.paper,
-      paddingLeft: "5px",
+      padding: "5px",
       display: "flex",
+      alignItems: "center",
     },
     headerLogoContainer: {
       display: "flex",
+    },
+    divider: {
+      marginLeft: "2px",
+      marginRight: "2px",
     },
   };
 
@@ -34,7 +39,7 @@ const Header = (props: HeaderProps) => {
       {props.isCompactNav ? (
         <Box sx={styles.headerLogoContainer}>
           <StyledImg src={logo} />
-          <Divider orientation="vertical" flexItem />
+          <Divider sx={styles.divider} orientation="vertical" flexItem />
         </Box>
       ) : null}
       {props.children}

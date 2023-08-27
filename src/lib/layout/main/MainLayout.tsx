@@ -8,7 +8,7 @@ import {
   ListItemText,
   makeStyles,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { Header } from "../header";
 import { SideNav } from "../nav";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,7 +16,7 @@ import { Outlet, Link } from "react-router-dom";
 import { INavMenuItem } from "../nav/menu/NavMenu";
 
 export interface IMainLayoutProps {
-  headerChildren?: React.ReactNode;
+  headerChildren?: ReactNode;
   navItems: INavMenuItem[];
 }
 

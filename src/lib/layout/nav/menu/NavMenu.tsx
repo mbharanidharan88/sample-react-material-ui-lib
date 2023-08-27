@@ -31,15 +31,30 @@ const drawerWidth = 240;
 const NavMenu: React.FC<INavMenuProps> = (props: INavMenuProps) => {
   const theme = useTheme();
   const styles = {
+    listItem: {
+      paddingTop: "8px",
+      paddingBottom: "8px",
+      paddingLeft: "16px",
+      paddingRight: "16px",
+    },
     listItemText: {
       color: theme.palette.common.white,
       fontSize: theme.typography.subtitle1,
+    },
+    navDivider: {
+      marginTop: "5px",
+      background: theme.palette.common.white,
+    },
+    icon: {
+      color: theme.palette.common.white,
+      marginTop: "4px",
+      marginBottom: "4px",
     },
   };
 
   const drawer: JSX.Element = (
     <div>
-      <Divider />
+      <Divider light={true} sx={styles.navDivider} />
       <List>
         {props.navItems.map((navItem, index) => (
           <ListItem
@@ -48,7 +63,7 @@ const NavMenu: React.FC<INavMenuProps> = (props: INavMenuProps) => {
             to={"/" + navItem.linkTo}
           >
             <ListItemIcon>
-              <Icon>{navItem.icon}</Icon>
+              <Icon sx={styles.icon}>{navItem.icon}</Icon>
             </ListItemIcon>
             {props.isCompactNav ? null : (
               <ListItemText sx={styles.listItemText} primary={navItem.text} />
