@@ -1,6 +1,4 @@
-export { default as SideNav, ISideNavProps } from "./side/SideNav";
-export {
-  default as NavMenu,
-  INavMenuProps,
-  INavMenuItem,
-} from "./menu/NavMenu";
+export { default as SideNav } from "./side/SideNav";
+export type { ISideNavProps } from "./side/SideNav";
+export { default as NavMenu } from "./menu/NavMenu";
+export type { INavMenuProps, INavMenuItem } from "./menu/NavMenu";

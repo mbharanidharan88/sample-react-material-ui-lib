@@ -7,7 +7,7 @@ export interface ButtonProps {
   variant: "contained" | "outlined" | "text" | string;
 }
 
-const InputButton = (props: ButtonProps) => {
+const InputButton: React.FC<ButtonProps> = (props: ButtonProps) => {
   return <MaterialButton variant="outlined">{props.label}</MaterialButton>;
 };
 
